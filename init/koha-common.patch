@@ -1,0 +1,18 @@
+--- a/etc/init.d/koha-common
++++ b/etc/init.d/koha-common
+@@ -45,6 +45,7 @@
+     # We insure all required directories exist, including disabled ones.
+     koha-create-dirs $(koha-list)
+     koha-start-zebra $(koha-list --enabled)
++    koha-start-plack $(koha-list --enabled)
+ }
+ 
+ #
+@@ -54,6 +55,7 @@
+ {
+     # We stop everything, including disabled ones.
+     koha-stop-zebra $(koha-list) || true
++    koha-stop-plack $(koha-list) || true
+ }
+ 
+ #
