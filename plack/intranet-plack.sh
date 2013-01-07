@@ -30,4 +30,4 @@ elif [ $PORT ]; then
     opt="$opt --port $PORT -D --pid $PIDFILE"
 fi
  
-/usr/local/bin/starman $opt $dir/koha.psgi
+/usr/bin/env starman $opt $dir/koha.psgi
