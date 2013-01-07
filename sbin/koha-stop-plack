@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# koha-stop-plack -- Stop Plack processes for named Koha instances
+#
+ 
+stopopac() {
+   local name="$1"
+   exec start-stop-daemon \
+        --stop \
+        --quiet \
+        --pidfile /var/run/koha/$name/opac-plack.pid
+}
+
+stopstaff() {
+   local name="$1"
+   exec start-stop-daemon \
+        --stop \
+        --quiet \
+        --pidfile /var/run/koha/$name/intranet-plack.pid
+}
+
+for name in "$@"
+do
+    echo "Stopping Plack servers for $name"
+    stopopac "$name" | stopstaff "$name"
+
+done
+echo "Servers stopped"

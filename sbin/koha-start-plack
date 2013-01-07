@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+# koha-start-plack -- Start Plack processes for named Koha instances
+#
+ 
+set -e
+ 
+for name in "$@"
+do
+    echo "Starting OPAC Plack server for $name"
+    exec start-stop-daemon \
+        --start \
+        --chuid $name-koha \
+        --exec /usr/share/koha/misc/plack/opac-plack.sh -- $name \
+        | /usr/share/koha/misc/plack/unlock-opac-plack.sh $name
+ 
+    echo "Starting Intranet Plack server for $name"
+    exec start-stop-daemon \
+        --start \
+        --chuid $name-koha \
+        --exec /usr/share/koha/misc/plack/intranet-plack.sh -- $name \
+        | /usr/share/koha/misc/plack/unlock-intranet-plack.sh $name
+ 
+done
