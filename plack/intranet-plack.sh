@@ -1,4 +1,4 @@
-#!/bin/sh -xe
+#!/bin/sh -e
 #
 # Create Intranet Plack server for named Koha instance
 #

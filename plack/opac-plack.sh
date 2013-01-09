@@ -1,4 +1,4 @@
-#!/bin/sh -xe
+#!/bin/sh -e
 #
 # Create OPAC Plack server for named Koha instance
 #
