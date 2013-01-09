@@ -8,7 +8,7 @@ test ! -z "$1" && site=$1 && shift
 timeout=0
  
 echo "Waiting for Intranet Plack socket for $site"
-while [ ! -S /var/run/koha/$site/intranet-plack.sock ] && [ $timeout -lt 10 ]
+while [ ! -S /var/run/koha/$site/intranet-plack.sock ] && [ $timeout -lt 5 ]
 do
         sleep 1
         timeout=$(($timeout + 1))
