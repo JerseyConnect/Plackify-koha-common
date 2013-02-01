@@ -29,5 +29,9 @@ if [ $SOCKET ]; then
 elif [ $PORT ]; then
     opt="$opt --port $PORT -D --pid $PIDFILE"
 fi
- 
-/usr/bin/env starman $opt $dir/koha.psgi
+
+if [ -f /usr/local/bin/starman ]; then
+    /usr/local/bin/starman $opt $dir/koha.psgi
+else
+    /usr/bin/env starman $opt $dir/koha.psgi
+fi 
