@@ -5,6 +5,7 @@
      koha-create-dirs $(koha-list)
      koha-start-zebra $(koha-list --enabled)
 +    koha-start-plack $(koha-list --enabled)
+     koha-start-sip $(koha-list --enabled)
  }
  
  #
@@ -13,6 +14,7 @@
      # We stop everything, including disabled ones.
      koha-stop-zebra $(koha-list) || true
 +    koha-stop-plack $(koha-list) || true
+     koha-stop-sip $(koha-list) || true
  }
  
  #
